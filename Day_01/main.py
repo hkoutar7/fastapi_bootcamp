@@ -1,5 +1,6 @@
 from fastapi import FastAPI , Body
 
+from schema import BasePost, Post
 from service import retrieve_posts, retrieve_post_by_id , add_post, update_post_by_id, delete_post_by_id
 
 app = FastAPI()
@@ -36,8 +37,9 @@ def get_post(id : int) -> dict :
 
 
 @app.post("/api/v1/posts")
-def save_post(payload : dict = Body(...)) -> dict :
+def save_post(payload : BasePost) -> dict :
 
+    payload = payload.__dict__
     post = add_post(payload)
 
     return  {
@@ -47,8 +49,9 @@ def save_post(payload : dict = Body(...)) -> dict :
     }
 
 @app.put("/api/v1/posts/{id}")
-def update_post(id : int, payload : dict = Body(...)) -> dict :
+def update_post(id : int, payload : BasePost) -> dict :
 
+    payload = payload.__dict__
     is_exist = update_post_by_id(id, payload)
 
     if is_exist is None :
