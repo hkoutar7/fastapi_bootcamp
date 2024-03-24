@@ -1,16 +1,18 @@
 from random import randint
 
-from data import posts as _posts
+from app.data import posts as _posts
 
 
 def retrieve_posts() -> list :
     return _posts
+
 
 def retrieve_post_by_id(id : int) -> dict | None :
     for p in _posts :
         if p["id"] == id :
             return p
     return None
+
 
 def add_post(payload) -> None | dict :
     post = {}
@@ -53,6 +55,11 @@ def delete_post_by_id(id : int) -> None | dict :
     return is_exist
 
 
+def retrieve_latest_post() -> None | dict :
+    lenght = len(_posts)
 
+    if lenght > 0 :
+        return _posts[lenght - 1]
+    return None
 
 
