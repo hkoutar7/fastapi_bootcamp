@@ -12,5 +12,6 @@ class UserModel(Base) :
     first_name = Column(String(50), nullable=True)
     last_name = Column(String(50), nullable=True)
     is_verified = Column(Boolean, default=False)
+    is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), server_onupdate=func.now())
