@@ -15,6 +15,7 @@ class UserUpdateSchema(UserBaseSchema) :
     first_name : str
     last_name : str
     is_verified : bool
+    is_active : bool
 
 
 class UserSchema(UserBaseSchema) :
@@ -23,6 +24,7 @@ class UserSchema(UserBaseSchema) :
     first_name : Optional[str]
     last_name : Optional[str]
     is_verified : bool
+    is_active : bool
     created_at : datetime
     updated_at : datetime
 
